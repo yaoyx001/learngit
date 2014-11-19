@@ -184,4 +184,3 @@ FunktionBilanzlesen <- function (v.AngabeOrdner,v.Type){
 #EnergieSpeNP <- rbind("HeizSpeNP" = HeizSpeNP, "KuhlSpeNP"= KuhlSpeNP)
 #v.Ergebniss <- list("Spezifische Energiebedarf"= EnergieSpeNP, )
 #plot(x <- 1:8760, y = b[["TempMittel"]],type="l",col="blue")
-#sa
