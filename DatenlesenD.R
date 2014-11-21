@@ -59,7 +59,7 @@ FunctionDatenL <- function(v.AngabeOrdner, v.Type){  # Ordner nur Ordnername, Ty
     names(v.EnergieZone) <- kNameZone
     names(v.HeizZone) <- kNameZone
     names(v.KuhlZone) <- kNameZone
-    v.HeizNP <- matrix(0,8760, 5)
+    v.HeizNP <- matrix(0,nrow(v.EnergieZone), 5)
     v.HeizNP <- as.data.frame(v.HeizNP)
     names(v.HeizNP) <- kNameNP
     v.KuhlNP <- v.HeizNP  # Formatierung
@@ -69,7 +69,7 @@ FunctionDatenL <- function(v.AngabeOrdner, v.Type){  # Ordner nur Ordnername, Ty
     }
     # Berechnung mittel Temperatur
     names(v.TempZone) <- kNameZone
-    v.TempNP <- matrix(0,8760, 5)
+    v.TempNP <- matrix(0,nrow(v.EnergieZone), 5)
     v.TempNP <- as.data.frame(v.TempNP)
     names(v.TempNP) <- kNameNP
     for (i in kNameNP){
@@ -113,7 +113,7 @@ FunctionDatenL <- function(v.AngabeOrdner, v.Type){  # Ordner nur Ordnername, Ty
   return(v.Ergebniss)  
 } 
 # Bilanzlesen---------------------------------------------------------------
-FunktionBilanzlesen <- function (v.AngabeOrdner,v.Type){
+FunctionBilanzlesen <- function (v.AngabeOrdner,v.Type){
   # Daten lesen
   v.Ordner <- paste("Z:/ESM/Masterarbeit/", v.AngabeOrdner, "/Energy_zone.BAL",sep="") 
   v.Bilanz <- read.table(v.Ordner, header=TRUE, quote="\"", stringsAsFactors=FALSE)  # ".BAL" lesen
@@ -126,7 +126,7 @@ FunktionBilanzlesen <- function (v.AngabeOrdner,v.Type){
   # Daten fuer D
   if (v.Type == "D"){  # fuer detailliertes Modell
     v.BilanzZone <- v.Bilanz  # loeschen Spalt TIME
-    v.BilanzNP <- as.data.frame(matrix(0,8760,35))  # jetzt 313 später 8760  
+    v.BilanzNP <- as.data.frame(matrix(0,nrow(v.Bilanz),35))  #  später 8760  
     for (i in 1:length(kNameZone)){
       names(v.BilanzZone) <- sub(paste("X", i, ".?B4",sep = ""), kNameZone[i], names(v.BilanzZone))
     }  # Zone Namen geben 
