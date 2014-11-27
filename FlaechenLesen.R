@@ -42,6 +42,14 @@ FunctionFlaechen <- function(v.AngabeOrdner){
       list.Flaechen <- data.frame(A, Name.Zone, Type.Flaechen, Ori.Flaechen)
       daten.Flaechen <- rbind(daten.Flaechen, list.Flaechen)
     }
+    else if (grepl("VOLUME",i)){
+      Type.Flaechen <- "NutzF"
+      a <- unlist(gregexpr(":",i)) 
+      A <- as.numeric(substr(i,a[1]+9,a[2]-1))/3.35  # Volumen/ Raumhöhe
+      Ori.Flaechen <- "H"
+      list.Flaechen <- data.frame(A, Name.Zone, Type.Flaechen, Ori.Flaechen)
+      daten.Flaechen <- rbind(daten.Flaechen, list.Flaechen)
+    }
   }
   return(daten.Flaechen)
 }
